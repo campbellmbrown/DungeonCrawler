@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DungeonCrawler.Managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -33,6 +34,9 @@ namespace DungeonCrawler
         }
         public static Random r;
 
+        // Managers
+        public FloorManager floorManager;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,14 +53,20 @@ namespace DungeonCrawler
             IsFixedTimeStep = true;
             graphics.SynchronizeWithVerticalRetrace = true;
             backgroundColor = new Color(26, 26, 40);
-            camera = new Camera2D(GraphicsDevice) { Zoom = 6, Position = (new Vector2(300, 210) - windowSize) / 2f };
+            camera = new Camera2D(GraphicsDevice) { Zoom = 3, Position = (new Vector2(300, 210) - windowSize) / 2f };
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            textures = new Dictionary<string, Texture2D>() { };
+            textures = new Dictionary<string, Texture2D>() 
+            {
+                { "floor_tiles_1", Content.Load<Texture2D>("Tiles/floor_tiles_1") },
+                { "wall_tiles_1", Content.Load<Texture2D>("Tiles/wall_tiles_1") },
+            };
+
+            floorManager = new FloorManager();
         }
 
         protected override void UnloadContent()
@@ -73,6 +83,7 @@ namespace DungeonCrawler
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, transformMatrix: camera.GetViewMatrix()); 
             GraphicsDevice.Clear(backgroundColor);
+            floorManager.Draw(spriteBatch);
             spriteBatch.DrawPoint(mousePosition, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
