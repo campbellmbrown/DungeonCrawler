@@ -10,16 +10,18 @@ namespace DungeonCrawler
 {
     public class Sprite
     {
-        public Texture2D texture { get; set; }
+        protected Texture2D texture { get; set; }
+        protected Rectangle sourceRectangle { get; set; }
 
-        public Sprite(Texture2D texture)
+        public Sprite(Texture2D texture, Rectangle sourceRectangle)
         {
             this.texture = texture;
+            this.sourceRectangle = sourceRectangle;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, sourceRectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
     }
 }

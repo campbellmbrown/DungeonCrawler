@@ -11,6 +11,7 @@ namespace DungeonCrawler.Tiles
     {
         public FloorTile(Vector2 position) : base(position)
         {
+            sprite = new Sprite(Game1.textures["floor_tiles_1"], new Rectangle(0, 0, 12, 12));
         }
     }
 }

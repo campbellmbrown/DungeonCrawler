@@ -16,7 +16,6 @@ namespace DungeonCrawler.Tiles
         public Tile(Vector2 position)
         {
             this.position = position;
-            sprite = new Sprite(Game1.textures["floor_tiles_1"]);
         }
 
         public void Draw(SpriteBatch spriteBatch)
