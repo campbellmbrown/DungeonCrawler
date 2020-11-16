@@ -9,9 +9,9 @@ namespace DungeonCrawler.Tiles
 {
     public class FloorTile : Tile
     {
-        public FloorTile(Vector2 position) : base(position)
+        public FloorTile(Vector2 position, int mask) : base(position)
         {
-            sprite = new Sprite(Game1.textures["floor_tiles_1"], new Rectangle(0, 0, 12, 12));
+            sprite = new Sprite(Game1.textures["floor_tiles_1"], new Rectangle((mask % 4) * 12, (mask / 4) * 12, 12, 12));
         }
     }
 }

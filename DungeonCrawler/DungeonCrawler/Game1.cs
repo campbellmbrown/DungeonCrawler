@@ -49,7 +49,7 @@ namespace DungeonCrawler
 
         protected override void Initialize()
         {
-            IsMouseVisible = true;
+            IsMouseVisible = false;
             IsFixedTimeStep = true;
             graphics.SynchronizeWithVerticalRetrace = true;
             backgroundColor = new Color(26, 26, 40);
