@@ -20,8 +20,8 @@ namespace DungeonCrawler.Models
 
     public class Room
     {
-        protected List<FloorTile> floorTiles;
-        protected List<WallTile> wallTiles;
+        protected List<FloorTile> floorTiles { get; set; }
+        public List<WallTile> wallTiles { get; set; }
         protected Dictionary<int, int> maskRemap = new Dictionary<int, int>()
         {
             { 2, 1 },

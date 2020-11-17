@@ -32,10 +32,13 @@ namespace DungeonCrawler
                 return Vector2.Transform(new Vector2(_mousePos.X, _mousePos.Y), camera.GetInverseViewMatrix());
             }
         }
-        public static Random r;
+        public static Random r { get; set; }
 
         // Managers
-        public FloorManager floorManager;
+        public static FloorManager floorManager { get; set; }
+        public static InputManager inputManager { get; set; }
+
+        SpriteFont spriteFont;
 
         public Game1()
         {
@@ -64,9 +67,13 @@ namespace DungeonCrawler
             {
                 { "floor_tiles_1", Content.Load<Texture2D>("Tiles/floor_tiles_1") },
                 { "wall_tiles_1", Content.Load<Texture2D>("Tiles/wall_tiles_1") },
+                { "player", Content.Load<Texture2D>("Entities/player") },
             };
 
             floorManager = new FloorManager();
+            inputManager = new InputManager();
+
+            spriteFont = Content.Load<SpriteFont>("Fonts/File");
         }
 
         protected override void UnloadContent()
@@ -76,6 +83,8 @@ namespace DungeonCrawler
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
+            inputManager.Update(gameTime);
+            camera.Position = floorManager.currentFloor.player.center - windowSize / 2f;
             base.Update(gameTime);
         }
 
@@ -85,6 +94,7 @@ namespace DungeonCrawler
             GraphicsDevice.Clear(backgroundColor);
             floorManager.Draw(spriteBatch);
             spriteBatch.DrawPoint(mousePosition, Color.White);
+            spriteBatch.DrawString(spriteFont, mousePosition.ToString(), mousePosition, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }

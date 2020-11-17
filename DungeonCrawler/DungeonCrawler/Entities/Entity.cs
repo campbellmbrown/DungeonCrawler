@@ -6,18 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonCrawler.Tiles
+namespace DungeonCrawler.Entities
 {
-    public class Tile
+    public class Entity
     {
-        public Vector2 position { get; set; }
         protected Sprite sprite { get; set; }
-        public int width { get { return sprite.width; } }
-        public int height { get { return sprite.height; } }
+        public Vector2 position { get; set; }
 
-        public Tile(Vector2 position)
+        public Entity(Vector2 position)
         {
             this.position = position;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

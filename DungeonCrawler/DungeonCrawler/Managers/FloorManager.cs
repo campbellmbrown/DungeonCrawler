@@ -11,12 +11,14 @@ namespace DungeonCrawler.Managers
 {
     public class FloorManager
     {
-        protected List<Floor> floors;
+        protected List<Floor> floors { get; set; }
+        public Floor currentFloor { get; set; }
 
         public FloorManager()
         {
             floors = new List<Floor>();
             floors.Add(new Floor());
+            currentFloor = floors[0];
         }
 
         public void Update(GameTime gameTime)
@@ -26,7 +28,7 @@ namespace DungeonCrawler.Managers
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            floors[0].Draw(spriteBatch);
+            currentFloor.Draw(spriteBatch);
         }
     }
 }
