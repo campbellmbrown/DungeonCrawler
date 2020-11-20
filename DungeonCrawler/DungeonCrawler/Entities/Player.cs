@@ -1,5 +1,6 @@
 ﻿using DungeonCrawler.Models;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,6 @@ namespace DungeonCrawler.Entities
     {
         public float playerSpeed = 65f;
         public Vector2 center { get { return position + sprite.size / 2f; } }
-        public Rectangle collisionRectangle { get { return new Rectangle((int)position.X, (int)position.Y, sprite.width, sprite.height); } }
         
         public Player(Vector2 position) : base(position)
         {
@@ -22,17 +22,24 @@ namespace DungeonCrawler.Entities
         public void Move(Vector2 playerDirection, float t, List<Barrier> barriers)
         {
             Vector2 potentialDisplacement = playerDirection * playerSpeed * t;
-            Rectangle newCollisionRectangle = new Rectangle(
-                collisionRectangle.X + (int)potentialDisplacement.X, 
-                collisionRectangle.Y + (int)potentialDisplacement.Y, 
+            RectangleF newCollisionRectangleVert = new RectangleF(
+                collisionRectangle.X, 
+                collisionRectangle.Y + potentialDisplacement.Y, 
                 collisionRectangle.Width, 
+                collisionRectangle.Height);
+            RectangleF newCollisionRectangleHoriz = new RectangleF(
+                collisionRectangle.X + potentialDisplacement.X,
+                collisionRectangle.Y,
+                collisionRectangle.Width,
                 collisionRectangle.Height);
             foreach (var barrier in barriers)
             {
-                if (barrier.collisionRectangle.Intersects(newCollisionRectangle))
-                    return;
+                Rectangle c2 = barrier.collisionRectangle;
+                if (newCollisionRectangleVert.Intersects(c2))
+                    potentialDisplacement.Y = 0;
+                if (newCollisionRectangleHoriz.Intersects(c2))
+                    potentialDisplacement.X = 0;
             }
-
             position += potentialDisplacement;
         }
     }

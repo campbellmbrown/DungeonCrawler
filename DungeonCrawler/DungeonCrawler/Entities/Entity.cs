@@ -12,6 +12,7 @@ namespace DungeonCrawler.Entities
     {
         protected Sprite sprite { get; set; }
         public Vector2 position { get; set; }
+        public RectangleF collisionRectangle { get { return new RectangleF(position.X, position.Y, sprite.width, sprite.height); } }
 
         public Entity(Vector2 position)
         {
