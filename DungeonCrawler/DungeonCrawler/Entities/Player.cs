@@ -12,11 +12,11 @@ namespace DungeonCrawler.Entities
     public class Player : Entity
     {
         public float playerSpeed = 65f;
-        public Vector2 center { get { return position + sprite.size / 2f; } }
-        
+
         public Player(Vector2 position) : base(position)
         {
             sprite = new Sprite(Game1.textures["player"]);
+            relCollRect = new Rectangle(1, 10, 9, 6);
         }
 
         public void Move(Vector2 playerDirection, float t, List<Barrier> barriers)
@@ -32,6 +32,7 @@ namespace DungeonCrawler.Entities
                 collisionRectangle.Y,
                 collisionRectangle.Width,
                 collisionRectangle.Height);
+
             foreach (var barrier in barriers)
             {
                 Rectangle c2 = barrier.collisionRectangle;

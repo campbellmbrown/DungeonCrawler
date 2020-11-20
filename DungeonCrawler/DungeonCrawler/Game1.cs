@@ -94,7 +94,6 @@ namespace DungeonCrawler
             GraphicsDevice.Clear(backgroundColor);
             floorManager.Draw(spriteBatch);
             spriteBatch.DrawPoint(mousePosition, Color.White);
-            spriteBatch.DrawString(spriteFont, mousePosition.ToString(), mousePosition, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
