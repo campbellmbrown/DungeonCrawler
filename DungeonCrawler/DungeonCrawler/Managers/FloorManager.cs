@@ -23,7 +23,7 @@ namespace DungeonCrawler.Managers
 
         public void Update(GameTime gameTime)
         {
-            // TODO
+            currentFloor.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

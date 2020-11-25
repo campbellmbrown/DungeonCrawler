@@ -80,6 +80,11 @@ namespace DungeonCrawler.Models
             JSONModelToObjects(roomJSONModel);
         }
 
+        public void Update(GameTime gameTime)
+        {
+
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var floorTile in floorTiles)

@@ -15,7 +15,7 @@ namespace DungeonCrawler.Entities
 
         public Player(Vector2 position) : base(position)
         {
-            sprite = new Sprite(Game1.textures["player"]);
+            sprite = new Sprite(Game1.animations["player_idle"]);
             relCollRect = new Rectangle(1, 10, 9, 6);
         }
 

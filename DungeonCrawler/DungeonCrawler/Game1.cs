@@ -1,4 +1,5 @@
 ﻿using DungeonCrawler.Managers;
+using DungeonCrawler.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -16,7 +17,7 @@ namespace DungeonCrawler
 
         public static Dictionary<string, Texture2D> textures { get; set; }
         //public static Dictionary<string, SoundEffect> sounds { get; set; }
-        //public static Dictionary<string, Animation> animations { get; set; }
+        public static Dictionary<string, Animation> animations { get; set; }
 
         public static Camera2D camera { get; set; }
 
@@ -69,6 +70,10 @@ namespace DungeonCrawler
                 { "wall_tiles_1", Content.Load<Texture2D>("Tiles/wall_tiles_1") },
                 { "player", Content.Load<Texture2D>("Entities/player") },
             };
+            animations = new Dictionary<string, Animation>()
+            {
+                { "player_idle", new Animation(Content.Load<Texture2D>("Entities/player_idle"), 16, 0.2f) }
+            };
 
             floorManager = new FloorManager();
             inputManager = new InputManager();
@@ -84,6 +89,7 @@ namespace DungeonCrawler
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
             inputManager.Update(gameTime);
+            floorManager.Update(gameTime);
             camera.Position = floorManager.currentFloor.player.center - windowSize / 2f;
             base.Update(gameTime);
         }

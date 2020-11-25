@@ -23,7 +23,7 @@ namespace DungeonCrawler.Entities
 
         public void Update(GameTime gameTime)
         {
-
+            sprite.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

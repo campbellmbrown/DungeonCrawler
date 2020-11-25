@@ -25,6 +25,13 @@ namespace DungeonCrawler.Models
             GenerateRooms();
         }
 
+        public void Update(GameTime gameTime)
+        {
+            foreach (var room in rooms)
+                room.Update(gameTime);
+            player.Update(gameTime);
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var room in rooms)
