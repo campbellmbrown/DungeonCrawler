@@ -60,6 +60,11 @@ namespace DungeonCrawler
             animationManager = new AnimationManager(animation);
         }
 
+        public void ChangeAnimation(Animation animation)
+        {
+            animationManager.Play(animation);
+        }
+
         public void Update(GameTime gameTime)
         {
             if (hasAnimation) animationManager.Update(gameTime);

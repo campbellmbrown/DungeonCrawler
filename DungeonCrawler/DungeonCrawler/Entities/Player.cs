@@ -12,11 +12,19 @@ namespace DungeonCrawler.Entities
     public class Player : Entity
     {
         public float playerSpeed = 65f;
+        public HorizontalDirection horizontalDirection;
 
         public Player(Vector2 position) : base(position)
         {
-            sprite = new Sprite(Game1.animations["player_idle"]);
-            relCollRect = new Rectangle(1, 10, 9, 6);
+            sprite = new Sprite(Game1.animations["player_idle_right"]);
+            horizontalDirection = HorizontalDirection.right;
+            relCollRect = new Rectangle(1, 6, 5, 3);
+        }
+
+        public enum HorizontalDirection
+        {
+            left,
+            right
         }
 
         public void Move(Vector2 playerDirection, float t, List<Barrier> barriers)
@@ -41,6 +49,18 @@ namespace DungeonCrawler.Entities
                 if (newCollisionRectangleHoriz.Intersects(c2))
                     potentialDisplacement.X = 0;
             }
+
+            if (potentialDisplacement.X > 0.001 && horizontalDirection == HorizontalDirection.left)
+            {
+                horizontalDirection = HorizontalDirection.right;
+                sprite.ChangeAnimation(Game1.animations["player_idle_right"]);
+            }
+            else if (potentialDisplacement.X < -0.001 && horizontalDirection == HorizontalDirection.right)
+            {
+                horizontalDirection = HorizontalDirection.left;
+                sprite.ChangeAnimation(Game1.animations["player_idle_left"]);
+            }
+
             position += potentialDisplacement;
         }
     }
