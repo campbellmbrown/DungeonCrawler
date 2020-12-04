@@ -41,6 +41,7 @@ namespace DungeonCrawler.Models
 
         public void GenerateRooms()
         {
+            Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
             string strJSON = System.IO.File.ReadAllText(@"D:\Git Projects\DungeonCrawler\DungeonCrawler\DungeonCrawler\Rooms\room_1.txt");
             rooms.Add(new Room(DeserialiseJSON(strJSON)));
 

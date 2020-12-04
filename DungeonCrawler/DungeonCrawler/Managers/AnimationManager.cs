@@ -32,6 +32,12 @@ namespace DungeonCrawler.Managers
             spriteBatch.Draw(animation.texture, position, rectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, Vector2 rotationSource)
+        {
+            Rectangle rectangle = new Rectangle(currentFrame * animation.frameWidth, 0, animation.frameWidth, animation.frameHeight);
+            spriteBatch.Draw(animation.texture, position, rectangle, Color.White, rotation, rotationSource, 1f, SpriteEffects.None, 0f);
+        }
+
         public void Reset() { currentFrame = 0; }
 
         public void Play(Animation animation)

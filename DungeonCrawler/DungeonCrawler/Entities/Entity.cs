@@ -21,12 +21,12 @@ namespace DungeonCrawler.Entities
             this.position = position;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch, position);
         }

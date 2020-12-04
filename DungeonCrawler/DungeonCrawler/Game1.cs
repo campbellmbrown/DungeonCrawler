@@ -57,7 +57,7 @@ namespace DungeonCrawler
             IsFixedTimeStep = true;
             graphics.SynchronizeWithVerticalRetrace = true;
             backgroundColor = new Color(26, 26, 40);
-            camera = new Camera2D(GraphicsDevice) { Zoom = 4, Position = (new Vector2(300, 210) - windowSize) / 2f };
+            camera = new Camera2D(GraphicsDevice) { Zoom = 5, Position = (new Vector2(300, 210) - windowSize) / 2f };
             base.Initialize();
         }
 
@@ -72,7 +72,9 @@ namespace DungeonCrawler
             animations = new Dictionary<string, Animation>()
             {
                 { "player_idle_right", new Animation(Content.Load<Texture2D>("Entities/player_idle_right"), 1, 10f) },
-                { "player_idle_left", new Animation(Content.Load<Texture2D>("Entities/player_idle_left"), 1, 10f) }
+                { "player_idle_left", new Animation(Content.Load<Texture2D>("Entities/player_idle_left"), 1, 10f) },
+                { "player_walk_left", new Animation(Content.Load<Texture2D>("Entities/player_walk_left"), 2, 0.2f) },
+                { "player_walk_right", new Animation(Content.Load<Texture2D>("Entities/player_walk_right"), 2, 0.2f) },
             };
 
             floorManager = new FloorManager();
