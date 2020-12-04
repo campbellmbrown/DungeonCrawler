@@ -13,14 +13,16 @@ namespace DungeonCrawler.Entities
     public class Player : Entity
     {
         public float playerSpeed = 65f;
-        public HorizontalDirection horizontalDirection;
-        protected Vector2 previousDisplacement;
+        public HorizontalDirection horizontalDirection { get; set; }
+        protected Vector2 previousDisplacement { get; set; }
+        protected float rotateTime = 0f;
+        protected float rotatePeriod = 0.4f;
 
         public Player(Vector2 position) : base(position)
         {
             sprite = new Sprite(Game1.animations["player_idle_right"], Sprite.RotationPoint.bottomMiddle);
             horizontalDirection = HorizontalDirection.right;
-            relCollRect = new Rectangle(1, 6, 5, 3);
+            relCollRect = new RectangleF(-2.5f, -3, 5, 3);
             previousDisplacement = Vector2.Zero;
         }
 
@@ -85,9 +87,6 @@ namespace DungeonCrawler.Entities
             else
                 base.Draw(spriteBatch);
         }
-
-        protected float rotateTime = 0f;
-        protected float rotatePeriod = 0.4f;
 
         public override void Update(GameTime gameTime)
         {
