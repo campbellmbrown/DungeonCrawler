@@ -14,6 +14,7 @@ namespace DungeonCrawler.Tiles
         protected Sprite sprite { get; set; }
         public int width { get { return sprite.width; } }
         public int height { get { return sprite.height; } }
+        public static int tileSize = 6;
 
         public Tile(Vector2 position)
         {

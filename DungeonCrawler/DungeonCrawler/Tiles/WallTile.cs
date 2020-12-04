@@ -11,7 +11,7 @@ namespace DungeonCrawler.Tiles
     {
         public WallTile(Vector2 position, int mask) : base(position)
         {
-            sprite = new Sprite(Game1.textures["wall_tiles_1"], new Rectangle((mask % 8) * 12, (mask / 8) * 12, 12, 12));
+            sprite = new Sprite(Game1.textures["wall_tiles_1"], new Rectangle((mask % 8) * Tile.tileSize, (mask / 8) * Tile.tileSize, Tile.tileSize, Tile.tileSize));
         }
     }
 }

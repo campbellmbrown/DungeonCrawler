@@ -105,7 +105,7 @@ namespace DungeonCrawler.Models
                 if (PositionInList(floorPosL, floorPos, 0, -1)) mask += 2;
                 if (PositionInList(floorPosL, floorPos, 0, 1)) mask += 4;
                 if (PositionInList(floorPosL, floorPos, 1, 0)) mask += 8;
-                floorTiles.Add(new FloorTile(new Vector2(floorPos.ElementAt(1) * 12, floorPos.ElementAt(0) * 12), mask));
+                floorTiles.Add(new FloorTile(new Vector2(floorPos.ElementAt(1) * Tile.tileSize, floorPos.ElementAt(0) * Tile.tileSize), mask));
             }
             foreach (var wallPos in wallPosL)
             {
@@ -126,7 +126,7 @@ namespace DungeonCrawler.Models
                 if (downLeft && left && down) mask += 32;
                 if (down) mask += 64;
                 if (downRight && right && down) mask += 128;
-                wallTiles.Add(new WallTile(new Vector2(wallPos.ElementAt(1) * 12, wallPos.ElementAt(0) * 12), maskRemap[mask]));
+                wallTiles.Add(new WallTile(new Vector2(wallPos.ElementAt(1) * Tile.tileSize, wallPos.ElementAt(0) * Tile.tileSize), maskRemap[mask]));
             }
         }
 
